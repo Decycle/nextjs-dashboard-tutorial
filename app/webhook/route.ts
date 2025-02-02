@@ -28,6 +28,13 @@ export async function POST(req: Request) {
       { status: 200 }
     )
   } catch (error) {
-    return Response.json({ error }, { status: 500 })
+    console.error(error)
+    return Response.json(
+      {
+        error:
+          error instanceof Error ? error.message : error,
+      },
+      { status: 500 }
+    )
   }
 }
