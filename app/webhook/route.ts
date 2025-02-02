@@ -6,6 +6,7 @@ export async function POST(req: Request) {
     const body = await req.json()
     const image = body.output[0].image
     const id = body.id
+    const prompt = body.input.prompt
 
     // convert image from base64 string to buffer
     const imageBuffer = Buffer.from(image, 'base64')
@@ -25,7 +26,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         username: 'Bot',
-        content: `New image has been posted! ${url}`,
+        content: `${prompt} has been posted! ${url}`,
       }),
     })
 
