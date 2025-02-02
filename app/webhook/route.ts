@@ -26,7 +26,12 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         username: 'Bot',
-        content: `${prompt} has been posted! ${url}`,
+        // content: `${prompt} has been posted! ${url}`,
+        embeds: [
+          {
+            image: url,
+          },
+        ],
       }),
     })
 
