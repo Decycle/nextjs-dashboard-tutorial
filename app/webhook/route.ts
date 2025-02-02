@@ -29,7 +29,9 @@ export async function POST(req: Request) {
         // content: `${prompt} has been posted! ${url}`,
         embeds: [
           {
-            image: url,
+            image: {
+              url: url,
+            },
           },
         ],
       }),
