@@ -4,10 +4,18 @@ export async function POST(req: Request) {
   try {
     // get the body of the request
     const body = await req.json()
+    const image = body.output[0].image
+    const id = body.id
+
+    // convert image from base64 string to buffer
+    const imageBuffer = Buffer.from(image, 'base64')
+
     const { url } = await put(
-      'articles/blob.txt',
-      JSON.stringify(body),
-      { access: 'public' }
+      `images/${id}.png`,
+      imageBuffer,
+      {
+        access: 'public',
+      }
     )
     const webhook_url = process.env.DISCORD_WEBHOOK!
     await fetch(webhook_url, {
